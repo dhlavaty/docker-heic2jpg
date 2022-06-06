@@ -2,15 +2,22 @@
 
 src=$1
 size=$(find $src -type f | grep -i '\.heic$' | wc -l)
-cnt=0
+iter=0
 
-for i in $(find $src -type f | grep -i '\.heic$')
+for fn in $(find $src -type f | grep -i '\.heic$')
 do
-	((cnt=cnt+1))
-	target=$(echo $i | sed 's/heic$/jpg/i')
-	printf "$i convert to $target\n"
-	/usr/bin/convert $i $target
-	printf " [$cnt/$size]\r"
+	iter=$((iter+1))
+	target=$(echo $fn | sed 's/heic$/jpg/i')
+	# https://www.tutorialkart.com/bash-shell-scripting/bash-date-format-options-examples/
+	FILE_DATE=$(/bin/date +%Y%m%d%H%M.%S -r ${fn})
+	printf "$iter/$size:\n"
+	printf "  File: $fn\n"
+	printf "  Creation date: $FILE_DATE\n"
+	printf "  Convert as file: $target\n"
+	/usr/bin/convert $fn $target
+	# Set the same date as the original image
+	/bin/touch -a -m -t $FILE_DATE $target
+	printf "\n\r"
 done
 
 printf "\n=== Finished ===\n"
