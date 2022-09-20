@@ -4,6 +4,9 @@ src=$1
 size=$(find $src -type f | grep -i '\.heic$' | wc -l)
 cnt=0
 
+# we set 'IFS', to support whitespaces in filenames in 'for-in' loop
+IFS=$'\n'
+
 for i in $(find $src -type f | grep -i '\.heic$')
 do
 	((cnt=cnt+1))
