@@ -14,12 +14,18 @@ For `heic2jpg` to convert all `*.heic` files to `*.jpg` run:
 docker run --rm -v "${PWD}:/workdir" dhlavaty/heic2jpg
 ```
 
+You can use parameter `--ignore-existing` to ignore already converted files:
+
+```sh
+docker run --rm -v "${PWD}:/workdir" dhlavaty/heic2jpg -- --ignore-existing
+```
+
 ## Convenient usage using shell alias
 
 Use `heic2jpghere` alias (in your `zsh.rc` for example):
 
 ```sh
-alias heic2jpghere='docker run --rm -v "${PWD}:/workdir" dhlavaty/heic2jpg'
+alias heic2jpghere='docker run --rm -v "${PWD}:/workdir" dhlavaty/heic2jpg --'
 ```
 
 And now to convert all HEIC files in your current directory:
@@ -27,6 +33,15 @@ And now to convert all HEIC files in your current directory:
 ```sh
 $ cd /Users/my/iphone/images
 $ heic2jpghere
+
+# done
+```
+
+or
+
+```sh
+$ cd /Users/my/iphone/images
+$ heic2jpghere --ignore-existing
 
 # done
 ```
