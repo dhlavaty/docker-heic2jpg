@@ -48,10 +48,19 @@ $ heic2jpghere --ignore-existing
 
 ## Docker build
 
-Build image:
+Build multi-arch image:
 
 ```sh
-$ docker build . --tag dhlavaty/heic2jpg
+$ docker buildx create --name mybuilder
+$ docker buildx use mybuilder
+
+# (Optional) check your builder
+$ docker buildx inspect
+
+$ docker buildx build --platform linux/amd64,linux/arm64 --tag dhlavaty/heic2jpg . --push
+
+# (Optional) Inspect your image
+$ docker buildx imagetools inspect dhlavaty/heic2jpg
 ```
 
 Lint dockerfile:
