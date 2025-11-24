@@ -2,7 +2,7 @@
 
 ## Description
 
-Small docker image with ImageMagick and heic2jpg script based on Alpine linux.
+Small docker image with ImageMagick and heic2jpg script based on dpokidov/imagemagick docker image.
 
 Simplest a convenient way how to convert your HEIC images to JPG.
 

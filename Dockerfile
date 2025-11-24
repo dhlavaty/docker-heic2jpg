@@ -1,12 +1,12 @@
-FROM alpine:3.22.2
+# https://github.com/dooman87/imagemagick-docker/blob/main/Dockerfile.bullseye
+# https://hub.docker.com/layers/dpokidov/imagemagick/7.1.1-47-bullseye/images/sha256-232be72bcc3e186c537653508e4e8b2f87cb613ecc888d94d68bf47257d89a1b
+# keep same imagemagick version here and in .sh file
+FROM dpokidov/imagemagick:7.1.1-47-bullseye
 
 COPY heic2jpg.sh /heic2jpg/
 
 # https://pkgs.alpinelinux.org/package/edge/community/x86/imagemagick
-# keep same imagemagick version here and in .sh file
-RUN apk add imagemagick=7.1.2.8-r0 imagemagick-heic=7.1.2.8-r0 --no-cache && \
-    rm -rf /var/cache/apk/* && \
-    chmod +x /heic2jpg/heic2jpg.sh && \
+RUN chmod +x /heic2jpg/heic2jpg.sh && \
     mkdir -p /workdir
 
 WORKDIR /workdir/
