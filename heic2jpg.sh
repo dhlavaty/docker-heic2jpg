@@ -22,8 +22,9 @@ do
 	fi
 
 	printf "$i convert to $target\n"
-	/usr/bin/convert $i $target
+	/usr/bin/magick -quiet $i $target
 	printf " [$cnt/$size]\r"
 done
 
-printf "\n=== Finished ===\n"
+# keep same imagemagick version here and in Dockerfile file
+printf "\n=== Finished (imagemagick-heic=7.1.2.8-r0) ===\n"
